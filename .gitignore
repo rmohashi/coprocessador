@@ -1,0 +1,6 @@
+coprocessador.cache/
+coprocessador.hw/
+coprocessador.ip_user_files/
+coprocessador.sim/
+coprocessador.srcs/
+*.xpr

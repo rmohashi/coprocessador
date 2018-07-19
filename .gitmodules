@@ -1,0 +1,3 @@
+[submodule "vhdl2008c"]
+	path = vhdl2008c
+	url = https://github.com/peteut/vhdl2008c.git
