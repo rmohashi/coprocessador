@@ -32,8 +32,6 @@ architecture estrutural of coprocessador_fd is
   port(
     inTS1:  in  std_logic_vector(15 downto 0);
     enTS1:  in  std_logic;
-    inTS2:  in  std_logic_vector(15 downto 0);
-    enTS2:  in  std_logic;
     inTS13: in  std_logic_vector(15 downto 0);
     enTS13: in  std_logic;
     inTS16: in  std_logic_vector(15 downto 0);
@@ -146,7 +144,7 @@ architecture estrutural of coprocessador_fd is
 begin
 
   b1: bus1 port map(k_120, enTS(7), k_24, enTS(8), s_mul, enTS(10), s_div, enTS(15), s_bus1);
-  b2: bus2 port map(x, enTS(1), k_2, enTS(2), s_div, enTS(13), s_sum_sub, enTS(16), s_bus2);
+  b2: bus2 port map(x, enTS(1), s_div, enTS(13), s_sum_sub, enTS(16), s_bus2);
   b3: bus3 port map(k_1, enTS(3), s_mul, enTS(11), s_div, enTS(14), s_bus3);
   b4: bus4 port map(k_2, enTS(2), k_6, enTS(4), k_5040, enTS(5), k_720, enTS(6), s_mul, enTS(12), s_bus4);
 
