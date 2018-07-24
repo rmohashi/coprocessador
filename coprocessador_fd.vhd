@@ -9,7 +9,7 @@ entity coprocessador_fd is
     enTS:     in std_logic_vector(1 to 16);
     selMux:   in std_logic_vector(1 to 10);
     selUF:    in std_logic;
-    r:        out std_logic_vector(15 downto 0)   
+    r:        out std_logic_vector(15 downto 0)
   );
 end coprocessador_fd;
 
@@ -56,6 +56,8 @@ architecture estrutural of coprocessador_fd is
 
   component bus4 is
   port(
+    inTS2:  in  std_logic_vector(15 downto 0);
+    enTS2:  in  std_logic;
     inTS4:  in  std_logic_vector(15 downto 0);
     enTS4:  in  std_logic;
     inTS5:  in  std_logic_vector(15 downto 0);
@@ -71,8 +73,8 @@ architecture estrutural of coprocessador_fd is
   component reg16 is
   port (
     CLK, CLKEN, OE_L, CLR_L: in std_logic;
-    D: in std_logic_vector(15 downto 0);  
-    Q: out std_logic_vector(15 downto 0)   
+    D: in std_logic_vector(15 downto 0);
+    Q: out std_logic_vector(15 downto 0)
   );
   end component;
 
@@ -146,7 +148,7 @@ begin
   b1: bus1 port map(k_120, enTS(7), k_24, enTS(8), s_mul, enTS(10), s_div, enTS(15), s_bus1);
   b2: bus2 port map(x, enTS(1), k_2, enTS(2), s_div, enTS(13), s_sum_sub, enTS(16), s_bus2);
   b3: bus3 port map(k_1, enTS(3), s_mul, enTS(11), s_div, enTS(14), s_bus3);
-  b4: bus4 port map(k_6, enTS(4), k_5040, enTS(5), k_720, enTS(6), s_mul, enTS(12), s_bus4);
+  b4: bus4 port map(k_2, enTS(2), k_6, enTS(4), k_5040, enTS(5), k_720, enTS(6), s_mul, enTS(12), s_bus4);
 
   r1: reg16 port map(clk, enReg(1), '0', '1', s_bus2, s_reg1);
   r2: reg16 port map(clk, enReg(2), '0', '1', s_bus1, s_reg2);

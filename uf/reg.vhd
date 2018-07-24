@@ -16,18 +16,18 @@ begin
 
   process(CLK, CLR_L, OE_L)
   begin
-    CLR <= not CLR_L; 
+    CLR <= not CLR_L;
 	  OE <= not OE_L;
 
     if (CLR = '1') then
 		  IQ <= (others => '0');
-    elsif (CLK'event and CLK='1') then
-      if (CLKEN='1') then 
+    elsif (CLK'event and CLK='0') then
+      if (CLKEN='1') then
 			  IQ <= D;
-      else 
+      else
         IQ <= IQ;
 		  end if;
-    end if;	
+    end if;
   end process;
 
   Q <= IQ;
