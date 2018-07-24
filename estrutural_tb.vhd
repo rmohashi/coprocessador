@@ -56,28 +56,75 @@ begin
     s_reset <= '0';
     s_sc <= '0';
     -- Test: cos(0)
-    -- s_x <= (others => '0');
-    s_x <= "0000100001100000";
+    s_x <= (others => '0');
+    -- s_x <= "0000100001100000";
     s_start <= '0';
     wait for delta_t;
     s_start <= '1';
     wait until s_done = '1';
-    s_start <= '0';
-    wait for delta_t * 2;
     -- Test: cos(pi/6)
     s_x <= "0000100001100000";
+    s_start <= '0';
+    wait for delta_t * 2;
     s_start <= '1';
-    -- wait until s_done = '1';
-    -- wait for delta_t * 2;    -- Test: cos(pi/4)
-    -- s_x <= "0000110010010000";
-    -- wait until s_done = '1';
-    -- wait for delta_t * 2;
-    -- -- Test: cos(pi/3)
-    -- s_x <= "0001000011000001";
-    -- wait until s_done = '1';
-    -- wait for delta_t * 2;
-    -- -- Test: cos(pi/2)
-    -- s_x <= "0001100100100001";
+    wait until s_done = '1';
+    -- Test: cos(pi/4)
+    s_x <= "0000110010010000";
+    s_start <= '0';
+    wait for delta_t * 2;
+    s_start <= '1';
+    wait until s_done <= '1';
+    wait for delta_t;
+    -- Test: cos(pi/3)
+    s_x <= "0001000011000001";
+    s_start <= '0';
+    wait for delta_t * 2;
+    s_start <= '1';
+    wait until s_done <= '1';
+    wait for delta_t;
+    -- Test: cos(pi/2)
+    s_x <= "0001100100100001";
+    s_start <= '0';
+    wait for delta_t * 2;
+    s_start <= '1';
+    wait until s_done <= '1';
+    wait for delta_t;
+    -- Teste: Seno
+    s_sc <= '1';
+    -- Test: sen(0)
+    s_x <= (others => '0');
+    s_start <= '0';
+    wait for delta_t * 2;
+    s_start <= '1';
+    wait until s_done <= '1';
+    wait for delta_t;
+    -- Test: sen(pi/6)
+    s_x <= "0000100001100000";
+    s_start <= '0';
+    wait for delta_t * 2;
+    s_start <= '1';
+    wait until s_done = '1';
+    -- Test: sen(pi/4)
+    s_x <= "0000110010010000";
+    s_start <= '0';
+    wait for delta_t * 2;
+    s_start <= '1';
+    wait until s_done <= '1';
+    wait for delta_t;
+    -- Test: sen(pi/3)
+    s_x <= "0001000011000001";
+    s_start <= '0';
+    wait for delta_t * 2;
+    s_start <= '1';
+    wait until s_done <= '1';
+    wait for delta_t;
+    -- Test: sen(pi/2)
+    s_x <= "0001100100100001";
+    s_start <= '0';
+    wait for delta_t * 2;
+    s_start <= '1';
+    wait until s_done <= '1';
+    wait for delta_t;
     report "Simulation Finished" severity FAILURE;
   end process;
 end arch;
