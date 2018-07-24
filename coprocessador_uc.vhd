@@ -9,17 +9,17 @@ entity coprocessador_uc is
     reset:    in  std_logic;
     clk:      in  std_logic;
     -- Saídas
-    enReg:    out std_logic_vector(1 to 5);
-    enTS:     out std_logic_vector(1 to 16);
-    selMux:   out std_logic_vector(1 to 10);
-    selUF:    out std_logic;
-    done:     out std_logic
+    enReg:    out std_logic_vector(1 to 5)  := (others => 'Z') ;
+    enTS:     out std_logic_vector(1 to 16) := (others => 'Z');
+    selMux:   out std_logic_vector(1 to 10) := (others => 'Z');
+    selUF:    out std_logic := 'Z'; -- 0 - soma/ 1 - subtração
+    done:     out std_logic := 'Z'
   );
 end coprocessador_uc;
 
 architecture arch of coprocessador_uc is
   type tipo_estado is (s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12);
-  signal estado:  tipo_estado;
+  signal estado:  tipo_estado := s0;
 
 begin
   
@@ -78,79 +78,79 @@ begin
         enReg  <= "10000";   
         enTS   <= "10000" & "00000" & "000000";   
         selMux <= "00" & "0" & "00" & "00" & "0" & "00";  
-        selUF  <= '0';
+        selUF  <= '1';
         done   <= '0';
       when s1 =>
         enReg  <= "01010";   
         enTS   <= "00010" & "00001" & "000000";   
         selMux <= "00" & "0" & "00" & "00" & "0" & "00";  
-        selUF  <= '0';
+        selUF  <= '1';
         done   <= '0';
       when s2 =>
         enReg  <= "00110";   
         enTS   <= "00010" & "00000" & "100000";   
         selMux <= "00" & "1" & "00" & "00" & "0" & "00";  
-        selUF  <= '0';
+        selUF  <= '1';
         done   <= '0';
       when s3 =>
         enReg  <= "00111";   
         enTS   <= "00010" & "01000" & "010000";   
         selMux <= "10" & "1" & "01" & "01" & "0" & "00";  
-        selUF  <= '0';
+        selUF  <= '1';
         done   <= '0';
       when s4 =>
         enReg  <= "11100";   
         enTS   <= "00001" & "00000" & "100011";   
         selMux <= "11" & "1" & "10" & "10" & "0" & "10";  
-        selUF  <= '0';
+        selUF  <= '1';
         done   <= '0';
       when s5 =>
         enReg  <= "11000";   
         enTS   <= "00000" & "00000" & "000011";   
         selMux <= "00" & "0" & "01" & "01" & "0" & "01";  
-        selUF  <= '1';
+        selUF  <= '0';
         done   <= '0';
       when s6 =>
         enReg  <= "10000";   
         enTS   <= "00000" & "00000" & "000001";   
         selMux <= "00" & "0" & "00" & "00" & "0" & "01";  
-        selUF  <= '0';
+        selUF  <= '1';
         done   <= '0';
       when s7 =>
         enReg  <= "00000";   
         enTS   <= "00000" & "00010" & "000000";   
         selMux <= "00" & "0" & "00" & "00" & "0" & "00";  
-        selUF  <= '0';
+        selUF  <= '1';
         done   <= '1';
       when s8 =>
         enReg  <= "10111";   
         enTS   <= "00100" & "00100" & "011000";   
         selMux <= "01" & "1" & "01" & "00" & "0" & "00";  
-        selUF  <= '0';
+        selUF  <= '1';
         done   <= '0';
       when s9 =>
         enReg  <= "11110";   
         enTS   <= "00000" & "10000" & "100011";   
         selMux <= "11" & "1" & "10" & "10" & "1" & "00";  
-        selUF  <= '0';
+        selUF  <= '1';
         done   <= '0';
       when s10 =>
         enReg  <= "11000";   
         enTS   <= "00000" & "00000" & "000011";   
         selMux <= "00" & "0" & "01" & "01" & "0" & "01";  
-        selUF  <= '1';
+        selUF  <= '0';
         done   <= '0';
       when s11 =>
         enReg  <= "10000";   
         enTS   <= "00000" & "00000" & "000001";   
         selMux <= "00" & "0" & "00" & "00" & "0" & "01";  
-        selUF  <= '0';
+        selUF  <= '1';
         done   <= '0';
       when s12 =>
         enReg  <= "00000";   
         enTS   <= "00000" & "00010" & "000000";   
         selMux <= "00" & "0" & "00" & "00" & "0" & "00";  
-        selUF  <= '0';
+        selUF  <= '1';
         done   <= '1';
     end case;
   end process;
