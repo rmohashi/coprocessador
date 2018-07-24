@@ -6,7 +6,7 @@ end estrutural_tb;
 
 architecture arch of estrutural_tb is
 
-  constant delta_t : time := 10 ns;
+  constant delta_t : time := 20 ns;
 
   component coprocessador_est is
   port(
@@ -45,9 +45,9 @@ begin
   process
   begin
     s_clk <= '1';
-    wait for 5 ns; 
+    wait for 10 ns; 
     s_clk <= '0';
-    wait for 5 ns;
+    wait for 10 ns;
   end process;
 
   process 
@@ -56,12 +56,28 @@ begin
     s_reset <= '0';
     s_sc <= '0';
     -- Test: cos(0)
-    s_x <= (others => '0');
+    -- s_x <= (others => '0');
+    s_x <= "0000100001100000";
     s_start <= '0';
     wait for delta_t;
     s_start <= '1';
     wait until s_done = '1';
+    s_start <= '0';
     wait for delta_t * 2;
+    -- Test: cos(pi/6)
+    s_x <= "0000100001100000";
+    s_start <= '1';
+    -- wait until s_done = '1';
+    -- wait for delta_t * 2;    -- Test: cos(pi/4)
+    -- s_x <= "0000110010010000";
+    -- wait until s_done = '1';
+    -- wait for delta_t * 2;
+    -- -- Test: cos(pi/3)
+    -- s_x <= "0001000011000001";
+    -- wait until s_done = '1';
+    -- wait for delta_t * 2;
+    -- -- Test: cos(pi/2)
+    -- s_x <= "0001100100100001";
     report "Simulation Finished" severity FAILURE;
   end process;
 end arch;

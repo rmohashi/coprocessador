@@ -17,18 +17,10 @@ end bus4;
 
 architecture arch of bus4 is
   begin
-    process(enTS4, enTS5, enTS6, enTS12)
-    begin
-    if enTS4 = '1' and enTS5 = '0' and enTS6 = '0' and enTS12 = '0' then
-      output <= inTS4;
-    elsif enTS4 = '0' and enTS5 = '1' and enTS6 = '0' and enTS12 = '0' then
-      output <= inTS5;
-    elsif enTS4 = '0' and enTS5 = '0' and enTS6 = '1' and enTS12 = '0' then
-      output <= inTS6;
-    elsif enTS4 = '0' and enTS5 = '0' and enTS6 = '0' and enTS12 = '1' then
-      output <= inTS12;
-    else 
-      output <= (others => 'Z');
-    end if;
-  end process;
+
+  output <= inTS4  when (enTS4 = '1' and enTS5 = '0' and enTS6 = '0' and enTS12 = '0') else 
+            inTS5  when (enTS4 = '0' and enTS5 = '1' and enTS6 = '0' and enTS12 = '0') else
+            inTS6  when (enTS4 = '0' and enTS5 = '0' and enTS6 = '1' and enTS12 = '0') else
+            inTS12 when (enTS4 = '0' and enTS5 = '0' and enTS6 = '0' and enTS12 = '1') else 
+            (others => 'Z');
 end arch;

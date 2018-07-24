@@ -17,18 +17,10 @@ end bus2;
 
 architecture arch of bus2 is
   begin
-    process(enTS1, enTS2, enTS13, enTS16)
-    begin
-    if enTS1 = '1' and enTS2 = '0' and enTS13 = '0' and enTS16 = '0' then
-      output <= inTS1;
-    elsif enTS1 = '0' and enTS2 = '1' and enTS13 = '0' and enTS16 = '0' then
-      output <= inTS2;
-    elsif enTS1 = '0' and enTS2 = '0' and enTS13 = '1' and enTS16 = '0' then
-      output <= inTS13;
-    elsif enTS1 = '0' and enTS2 = '0' and enTS13 = '0' and enTS16 = '1' then
-      output <= inTS16;
-    else 
-      output <= (others => 'Z');
-    end if;
-  end process;
+    output <= inTS1  when (enTS1 = '1' and enTS2 = '0' and enTS13 = '0' and enTS16 = '0') else
+              inTS2  when (enTS1 = '0' and enTS2 = '1' and enTS13 = '0' and enTS16 = '0') else
+              inTS13 when (enTS1 = '0' and enTS2 = '0' and enTS13 = '1' and enTS16 = '0') else
+              inTS16 when (enTS1 = '0' and enTS2 = '0' and enTS13 = '0' and enTS16 = '1') else
+              (others => 'Z');
+
 end arch;

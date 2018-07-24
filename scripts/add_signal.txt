@@ -1,0 +1,20 @@
+add wave  \
+sim:/estrutural_tb/cop/fd/s_bus1 \
+sim:/estrutural_tb/cop/fd/s_bus2 \
+sim:/estrutural_tb/cop/fd/s_bus3 \
+sim:/estrutural_tb/cop/fd/s_bus4 \
+sim:/estrutural_tb/cop/fd/s_reg1 \
+sim:/estrutural_tb/cop/fd/s_reg2 \
+sim:/estrutural_tb/cop/fd/s_reg3 \
+sim:/estrutural_tb/cop/fd/s_reg4 \
+sim:/estrutural_tb/cop/fd/s_reg5 \
+sim:/estrutural_tb/cop/fd/s_m1 \
+sim:/estrutural_tb/cop/fd/s_m2 \
+sim:/estrutural_tb/cop/fd/s_m3 \
+sim:/estrutural_tb/cop/fd/s_m4 \
+sim:/estrutural_tb/cop/fd/s_m5 \
+sim:/estrutural_tb/cop/fd/s_m6 \
+sim:/estrutural_tb/cop/fd/s_mul \
+sim:/estrutural_tb/cop/fd/s_div \
+sim:/estrutural_tb/cop/fd/s_sum_sub
+restart -f

@@ -15,16 +15,10 @@ end bus3;
 
 architecture arch of bus3 is
   begin
-    process(enTS3, enTS11, enTS14)
-    begin
-    if enTS3 = '1' and enTS11 = '0' and enTS14 = '0'  then
-      output <= inTS3;
-    elsif enTS3 = '0' and enTS11 = '1' and enTS14 = '0'  then
-      output <= inTS11;
-    elsif enTS3 = '0' and enTS11 = '0' and enTS14 = '1'  then
-      output <= inTS14;
-    else 
-      output <= (others => 'Z');
-    end if;
-  end process;
+
+  output <= inTS3  when (enTS3 = '1' and enTS11 = '0' and enTS14 = '0') else 
+            inTS11 when (enTS3 = '0' and enTS11 = '1' and enTS14 = '0') else
+            inTS14 when (enTS3 = '0' and enTS11 = '0' and enTS14 = '1') else
+            (others => 'Z');
+   
 end arch;

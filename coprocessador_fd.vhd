@@ -9,7 +9,7 @@ entity coprocessador_fd is
     enTS:     in std_logic_vector(1 to 16);
     selMux:   in std_logic_vector(1 to 10);
     selUF:    in std_logic;
-    r:        out std_logic_vector(15 downto 0)
+    r:        out std_logic_vector(15 downto 0)   
   );
 end coprocessador_fd;
 
@@ -105,6 +105,7 @@ architecture estrutural of coprocessador_fd is
 
   component divisor_16bits is
   port (
+    clk         : in  std_logic;
     A , B       : in  std_logic_vector(15 downto 0);
     resultado   : out std_logic_vector(15 downto 0)
   );
@@ -132,7 +133,7 @@ architecture estrutural of coprocessador_fd is
   signal s_m1, s_m2, s_m3, s_m4, s_m5, s_m6 : std_logic_vector(15 downto 0);
   signal s_mul, s_div, s_sum_sub : std_logic_vector(15 downto 0);
 
-  constant k_1    : std_logic_vector := "0000000000000001"; 
+  constant k_1    : std_logic_vector := "0001000000000000"; -- Em ponto fixo
   constant k_2    : std_logic_vector := "0000000000000010";
   constant k_6    : std_logic_vector := "0000000000000110";
   constant k_24   : std_logic_vector := "0000000000011000";
@@ -150,7 +151,7 @@ begin
   r1: reg16 port map(clk, enReg(1), '0', '1', s_bus2, s_reg1);
   r2: reg16 port map(clk, enReg(2), '0', '1', s_bus1, s_reg2);
   r3: reg16 port map(clk, enReg(3), '0', '1', s_bus3, s_reg3);
-  r4: reg16 port map(clk, enReg(4), '0', '1', s_bus3, s_reg4);
+  r4: reg16 port map(clk, enReg(4), '0', '1', s_bus4, s_reg4);
   r5: reg16 port map(clk, enReg(5), '0', '1', s_bus1, s_reg5);
 
   m1: mux4to1 port map(s_reg1, s_reg2, s_reg3, s_reg4, selMux(1 to 2), s_m1);
@@ -161,9 +162,8 @@ begin
   m6: mux4to1 port map(s_reg1, s_reg2, s_reg3, (others => '0'), selMux(9 to 10), s_m6);
 
   mul: multiplicador_16bits port map(s_m1, s_m2, s_mul);
-  div: divisor_16bits port map(s_m3, s_m4, s_div);
+  div: divisor_16bits port map(clk, s_m3, s_m4, s_div);
   sum_sub: somador_subtrator port map(s_m5, s_m6, selUF, s_sum_sub);
 
-  result: tri_state port map(s_reg1, '1', r);
-
+  result: tri_state port map(s_reg1, enTS(9), r);
 end estrutural;

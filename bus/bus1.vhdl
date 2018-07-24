@@ -17,18 +17,10 @@ end bus1;
 
 architecture arch of bus1 is
   begin
-    process(enTS7, enTS8, enTS10, enTS15)
-    begin
-    if enTS7 = '1' and enTS8 = '0' and enTS10 = '0' and enTS15 = '0' then
-      output <= inTS7;
-    elsif enTS7 = '0' and enTS8 = '1' and enTS10 = '0' and enTS15 = '0' then
-      output <= inTS8;
-    elsif enTS7 = '0' and enTS8 = '0' and enTS10 = '1' and enTS15 = '0' then
-      output <= inTS10;
-    elsif enTS7 = '0' and enTS8 = '0' and enTS10 = '0' and enTS15 = '1' then
-      output <= inTS15;
-    else 
-      output <= (others => 'Z');
-    end if;
-  end process;
+
+  output <= inTS7  when (enTS7 = '1' and enTS8 = '0' and enTS10 = '0' and enTS15 = '0') else
+            inTS8  when (enTS7 = '0' and enTS8 = '1' and enTS10 = '0' and enTS15 = '0') else 
+            inTS10 when (enTS7 = '0' and enTS8 = '0' and enTS10 = '1' and enTS15 = '0') else
+            inTS15 when (enTS7 = '0' and enTS8 = '0' and enTS10 = '0' and enTS15 = '1') else 
+            (others => 'Z');
 end arch;

@@ -5,7 +5,7 @@ entity reg16 is
   port (
     CLK, CLKEN, OE_L, CLR_L: in std_logic;
     D: in std_logic_vector(15 downto 0);   -- Input bus
-    Q: out std_logic_vector (15 downto 0) -- Output bus (three-state)
+    Q: out std_logic_vector (15 downto 0) := (others => '0') -- Output bus (three-state)
   );
 end reg16;
 
@@ -14,7 +14,7 @@ architecture arch of reg16 is
   signal IQ: STD_LOGIC_VECTOR(15 downto 0) := (others => '0'); -- internal Q signals
 begin
 
-  process(CLK, CLR_L, CLR, OE_L, OE, IQ)
+  process(CLK, CLR_L, OE_L)
   begin
     CLR <= not CLR_L; 
 	  OE <= not OE_L;
@@ -24,16 +24,12 @@ begin
     elsif (CLK'event and CLK='1') then
       if (CLKEN='1') then 
 			  IQ <= D;
+      else 
+        IQ <= IQ;
 		  end if;
-    end if;
-	 
-    if OE = '1' then 
-      if (CLK'event and CLK='0') then
-		    Q <= IQ;
-      end if;
-    else
-		  Q <= (others => 'Z');
-	  end if;
-	
+    end if;	
   end process;
+
+  Q <= IQ;
+
 end arch;

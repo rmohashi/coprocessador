@@ -12,12 +12,6 @@ end mux;
 
 architecture mux_arch of mux is
 begin
-  process (sel)
-  begin
-    if sel = '0' then
-      saida <= soma;
-    else 
-      saida <= subtracao;
-    end if;
-  end process;
+  saida <= soma when sel = '0' else
+           subtracao;
 end mux_arch;

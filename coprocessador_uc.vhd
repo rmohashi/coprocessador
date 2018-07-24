@@ -9,11 +9,11 @@ entity coprocessador_uc is
     reset:    in  std_logic;
     clk:      in  std_logic;
     -- Saídas
-    enReg:    out std_logic_vector(1 to 5)  := (others => 'Z') ;
-    enTS:     out std_logic_vector(1 to 16) := (others => 'Z');
-    selMux:   out std_logic_vector(1 to 10) := (others => 'Z');
-    selUF:    out std_logic := 'Z'; -- 0 - soma/ 1 - subtração
-    done:     out std_logic := 'Z'
+    enReg:    out std_logic_vector(1 to 5)  := (others => '0') ;
+    enTS:     out std_logic_vector(1 to 16) := (others => '0');
+    selMux:   out std_logic_vector(1 to 10) := (others => '0');
+    selUF:    out std_logic := '0'; -- 0 - soma/ 1 - subtração
+    done:     out std_logic := '0'
   );
 end coprocessador_uc;
 
@@ -81,8 +81,8 @@ begin
         selUF  <= '1';
         done   <= '0';
       when s1 =>
-        enReg  <= "01010";   
-        enTS   <= "00010" & "00001" & "000000";   
+        enReg  <= "11000";   
+        enTS   <= "01000" & "00001" & "000000";   
         selMux <= "00" & "0" & "00" & "00" & "0" & "00";  
         selUF  <= '1';
         done   <= '0';
