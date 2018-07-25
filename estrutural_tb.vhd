@@ -37,7 +37,7 @@ architecture arch of estrutural_tb is
   signal s_d_enTS:      std_logic_vector(1 to 16);
   signal s_d_selMux:    std_logic_vector(1 to 10);
   signal s_d_selUF:     std_logic;
-  
+
 begin
 
   cop: coprocessador_est port map(s_x, s_sc, s_start, s_clk, s_reset, s_r, s_done, s_d_enReg, s_d_enTS, s_d_selMux, s_d_selUF);
@@ -45,12 +45,12 @@ begin
   process
   begin
     s_clk <= '1';
-    wait for 10 ns; 
+    wait for 10 ns;
     s_clk <= '0';
     wait for 10 ns;
   end process;
 
-  process 
+  process
   begin
     -- Teste: Cosseno
     s_reset <= '0';
@@ -89,6 +89,15 @@ begin
     s_start <= '1';
     wait until s_done <= '1';
     wait for delta_t;
+    -- Verificando que o Reset é assíncrono
+    s_x <= "0001000011000001";
+    s_start <= '0';
+    wait for delta_t * 2;
+    s_start <= '1';
+    wait for delta_t * 5 / 4;
+    s_reset <= '1';
+    wait for delta_t;
+    s_reset <= '0';
     -- Teste: Seno
     s_sc <= '1';
     -- Test: sen(0)
