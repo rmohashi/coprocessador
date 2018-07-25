@@ -4,3 +4,11 @@ coprocessador.ip_user_files/
 coprocessador.sim/
 coprocessador.srcs/
 *.xpr
+*.*
+!vhdl2008c/*
+!*.vhd
+!*.vhd
+!bus/*.vhdl
+!uf/*.vhd
+!.gitignore
+!.gitmodules
