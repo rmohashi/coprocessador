@@ -35,5 +35,5 @@ No software Vivado:
 
 * Bruno Eidi Nishimoto - [brunonishimoto](https://github.com/brunonishimoto)
 * Bruno Yukio Fujita Saito - [BrunoSaito](https://github.com/BrunoSaito)
-* Matheus Felix Dias Lima da Silva - [matheusssf](https://github.com/matheusssf)
+* Matheus Felix - [matheusssf](https://github.com/matheusssf)
 * Rodrigo Masaru Ohashi - [rmohashi](https://github.com/rmohashi)
