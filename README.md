@@ -19,14 +19,21 @@ git clone --recursive https://github.com/rmohashi/coprocessador.git
 No software Vivado:
 
 * Crie um novo projeto na localização da pasta clonada
-* Adicione os arquivos necessários 
-  (no caso do testbench, o mesmo deve ser adicionado como _Simulation-Only Source_)
-* Adicione a bibliteca `fixed_pkg_c.vhdl` disponível na pasta do submódulo `vhdl2008c`
+* Adicione os arquivos necessários - coprocessador, uf, bus, testbench
+  (no caso do testbench, o mesmo deve ser adicionado como **Simulation-Only Source**)
+* Adicione os arquivos `fixed_pkg_c.vhdl` e `math_utility_pkg.vhdl` disponível na pasta do submódulo `vhdl2008c`, na biblioteca `ieee_proposed`
 
-### Execução do projeto
+## Execução
 
 No software Vivado:
 
 * Defina o testbench como módulo principal de simulação:
-  * Vá em _Tools_ > _Settings_ > _Simulation_, selecione o testbench na opção _Simulation top module name_ e clique em Ok
-* Clique em _Simulation_ > _Run Behavioral Simulation_
+  * Vá em ***Tools > Settings > Simulation***, selecione o testbench na opção `Simulation top module name` e clique em **Ok**
+* Clique em ***Simulation > Run Behavioral Simulation***
+
+## Autores
+
+* Bruno Eidi Nishimoto - [brunonishimoto](https://github.com/brunonishimoto)
+* Bruno Yukio Fujita Saito - [BrunoSaito](https://github.com/BrunoSaito)
+* Matheus Felix Dias Lima da Silva - [matheusssf](https://github.com/matheusssf)
+* Rodrigo Masaru Ohashi - [rmohashi](https://github.com/rmohashi)
